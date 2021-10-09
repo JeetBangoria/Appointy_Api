@@ -16,6 +16,7 @@ require (
 	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
 	github.com/inconshreveable/log15 v0.0.0-20201112154412-8562bdadbbac // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
+	github.com/julienschmidt/httprouter v1.3.0 // indirect
 	github.com/kyawmyintthein/revel_mgo v0.0.0-20200323021757-da4c8c413a4d // indirect
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect

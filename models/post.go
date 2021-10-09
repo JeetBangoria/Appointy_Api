@@ -1,4 +1,5 @@
 package models
+
 import (
 	"appointy_api/models/db"
 	"time"
@@ -9,12 +10,10 @@ import (
 
 type Post struct {
 	ID bson.ObjectId `bson:"_id" json:"id"`
-	Title string `json:"title" bson:"title"`
-	SlugUrl string `json:"slug_url" bson:"slug_url"`
-	Content string `json:"content" bson:"content"`
-	PublishedAt time.Time `json:"published_at" bson:"published_at"` // check this
+	Content string `json:"content" bson:"content"`//Caption
+	ImageURL  string        `json:"imageURL" bson:"imageURL"`
 	CreatedAt time.Time `json:"created_at,omitempty" bson:"created_at"`
-	UpdatedAt time.Time `json:"updated_at,omitempty" bson:"updated_at"`
+	User_ID bson.ObjectId `json:"userid" bson:"_userid"`
 }
 
 func newPostCollection() *db.Collection {

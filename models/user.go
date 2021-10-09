@@ -2,8 +2,7 @@ package models
 
 import (
 	"errors"
-	"strconv"
-	"time"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var (
@@ -12,28 +11,15 @@ var (
 
 func init() {
 	UserList = make(map[string]*User)
-	u := User{"user_11111", "astaxie", "11111", Profile{"male", 20, "Singapore", "astaxie@gmail.com"}}
+	u := User{"user_11111", "1111", "jeetbangoria","jeetbangoria@gmail.com"}
 	UserList["user_11111"] = &u
 }
 
 type User struct {
-	Id       string
-	Username string
-	Password string
-	Profile  Profile
-}
-
-type Profile struct {
-	Gender  string
-	Age     int
-	Address string
-	Email   string
-}
-
-func AddUser(u User) string {
-	u.Id = "user_" + strconv.FormatInt(time.Now().UnixNano(), 10)
-	UserList[u.Id] = &u
-	return u.Id
+	ID       bson.ObjectId `json:"id" bson:"_id"`
+	Password string `json:"password" bson:"password"`
+	Username     string `json:"username" bson:"username"`
+	Email    string  `json:"email" bson:"email"`
 }
 
 func GetUser(uid string) (u *User, err error) {
@@ -51,21 +37,6 @@ func UpdateUser(uid string, uu *User) (a *User, err error) {
 	if u, ok := UserList[uid]; ok {
 		if uu.Username != "" {
 			u.Username = uu.Username
-		}
-		if uu.Password != "" {
-			u.Password = uu.Password
-		}
-		if uu.Profile.Age != 0 {
-			u.Profile.Age = uu.Profile.Age
-		}
-		if uu.Profile.Address != "" {
-			u.Profile.Address = uu.Profile.Address
-		}
-		if uu.Profile.Gender != "" {
-			u.Profile.Gender = uu.Profile.Gender
-		}
-		if uu.Profile.Email != "" {
-			u.Profile.Email = uu.Profile.Email
 		}
 		return u, nil
 	}
